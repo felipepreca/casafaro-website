@@ -413,12 +413,12 @@
   }
   .hero .caption {
     position: absolute;
-    bottom: calc(100px + env(safe-area-inset-bottom, 0));
+    bottom: calc(120px + env(safe-area-inset-bottom, 0));
     left: 36px;
     z-index: 2;
     color: var(--paper);
     text-align: left;
-    max-width: 60%;
+    max-width: 55%;
   }
   .hero .eyebrow {
     font-family: "Jost", sans-serif;
@@ -474,7 +474,7 @@
     left: 50%;
     transform: translateX(-50%);
     width: 1px;
-    height: 38px;
+    height: 26px;
     z-index: 3;
     overflow: hidden;
     opacity: 0;
@@ -1328,7 +1328,7 @@
   var toTop = document.getElementById("toTop");
   if (toTop) {
     function updateToTop() {
-      if (window.scrollY > 200) toTop.classList.add("visible");
+      if (window.scrollY > 100) toTop.classList.add("visible");
       else toTop.classList.remove("visible");
     }
     window.addEventListener("scroll", updateToTop, { passive: true });
