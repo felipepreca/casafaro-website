@@ -1333,15 +1333,30 @@
      ============================================================ */
   var toTop = document.getElementById("toTop");
   if (toTop) {
+    var lastScrollY = window.scrollY;
+
     function updateToTop() {
-      if (window.scrollY > 100) toTop.classList.add("visible");
-      else toTop.classList.remove("visible");
+      var currentScrollY = window.scrollY;
+      var delta = currentScrollY - lastScrollY;
+
+      if (currentScrollY <= 100) {
+        // Near top — always hide
+        toTop.classList.remove("visible");
+      } else if (delta > 2) {
+        // Scrolling down — show
+        toTop.classList.add("visible");
+      } else if (delta < -2) {
+        // Scrolling up — hide
+        toTop.classList.remove("visible");
+      }
+
+      lastScrollY = currentScrollY;
     }
+
     window.addEventListener("scroll", updateToTop, { passive: true });
     toTop.addEventListener("click", function() {
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
-    updateToTop();
   }
 
   /* Year */
@@ -1352,4 +1367,3 @@
 
 </body>
 </html>
-
