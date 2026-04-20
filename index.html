@@ -413,7 +413,7 @@
   }
   .hero .caption {
     position: absolute;
-    bottom: calc(56px + env(safe-area-inset-bottom, 0));
+    bottom: calc(100px + env(safe-area-inset-bottom, 0));
     left: 36px;
     z-index: 2;
     color: var(--paper);
@@ -917,7 +917,65 @@
   }
 
   @media print {
-    nav, .menu-overlay, .scroll-cue, .age-gate { display: none !important; }
+    nav, .menu-overlay, .scroll-cue, .age-gate, .to-top { display: none !important; }
+  }
+
+  /* ============================================================
+     SCROLL TO TOP
+     ============================================================ */
+  .to-top {
+    position: fixed;
+    bottom: calc(28px + env(safe-area-inset-bottom, 0px));
+    right: 28px;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: var(--paper);
+    border: 1px solid var(--shell);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(8px);
+    pointer-events: none;
+    transition: opacity 0.45s var(--ease), transform 0.45s var(--ease), background 0.3s var(--ease), border-color 0.3s var(--ease);
+    z-index: 9999;
+    box-shadow: 0 2px 14px rgba(28, 26, 21, 0.1);
+    -webkit-tap-highlight-color: transparent;
+    padding: 0;
+    font: inherit;
+  }
+  .to-top.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  .to-top:hover {
+    background: var(--parch);
+    border-color: var(--stone);
+  }
+  .to-top svg {
+    width: 14px;
+    height: 14px;
+    stroke: var(--ink);
+    stroke-width: 1.6;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: transform 0.3s var(--ease);
+    display: block;
+  }
+  .to-top:hover svg {
+    transform: translateY(-2px);
+  }
+  @media (max-width: 640px) {
+    .to-top {
+      bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+      right: 20px;
+      width: 44px;
+      height: 44px;
+    }
   }
 </style>
 
@@ -1013,7 +1071,7 @@
   <div class="body">
     <div class="eyebrow">&mdash; The Vessel</div>
     <h3 class="reveal">Hand-thrown.<br>Fired twice. Unlabeled.</h3>
-    <p class="reveal reveal-delay-1">Stoneware &mdash; the clay of M&eacute;xico's coast. Sealed in wax. The mark pressed into the body before firing.</p>
+    <p class="reveal reveal-delay-1">Stoneware &mdash; the clay of M&eacute;xico's coast. Sealed by hand. The mark pressed into the body before firing.</p>
     <p class="reveal reveal-delay-2">No paper. No glass. Poured slowly. Kept after.</p>
   </div>
 </section>
@@ -1031,7 +1089,8 @@
       <div><dt>Body</dt><dd>Medium</dd></div>
       <div><dt>Nose</dt><dd>Cooked agave, citrus, garden herbs, soft spice</dd></div>
       <div><dt>Palate</dt><dd>Agave first, then citrus and pepper; earth at the close</dd></div>
-      <div><dt>Agave</dt><dd>100% Tequilana Weber Azul, 5+ years</dd></div>
+      <div><dt>Agave</dt><dd>100% Tequilana Weber Azul, organic, 5+ years</dd></div>
+      <div><dt>Additives</dt><dd>None</dd></div>
       <div><dt>Alcohol</dt><dd>40% &middot; 80 proof</dd></div>
     </dl>
   </div>
@@ -1263,11 +1322,33 @@
   }, { threshold: 0.15, rootMargin: "0px 0px -80px 0px" });
   document.querySelectorAll(".reveal").forEach(function(el) { io.observe(el); });
 
+  /* ============================================================
+     SCROLL TO TOP
+     ============================================================ */
+  var toTop = document.getElementById("toTop");
+  if (toTop) {
+    function updateToTop() {
+      if (window.scrollY > 200) toTop.classList.add("visible");
+      else toTop.classList.remove("visible");
+    }
+    window.addEventListener("scroll", updateToTop, { passive: true });
+    toTop.addEventListener("click", function() {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+    updateToTop();
+  }
+
   /* Year */
   var yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 })();
 </script>
+
+<button class="to-top" id="toTop" aria-label="Back to top" type="button">
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <polyline points="6 14 12 8 18 14"/>
+  </svg>
+</button>
 
 </body>
 </html>
