@@ -102,29 +102,31 @@ text-transform: uppercase;
 color: var(–stone);
 }
 
-.preview {
-background: #FFFFFF;
-padding: 40px 32px;
+.preview-row {
+display: grid;
+grid-template-columns: 1fr 1fr;
 border-bottom: 1px solid var(–shell);
+}
+.preview-pane {
+padding: 36px 28px;
 overflow-x: auto;
+}
+.preview-pane.light {
+background: #FFFFFF;
+border-right: 1px solid var(–shell);
+}
+.preview-pane.dark {
+background: #1A1A1A;
 }
 .preview-label {
 font-family: “Jost”, sans-serif;
 font-size: 9px;
 letter-spacing: 0.4em;
 text-transform: uppercase;
-color: var(–stone);
 margin-bottom: 24px;
 }
-
-/* The actual signature styling — kept inline in the source for copy/paste,
-but mirrored here for the preview */
-.sig {
-font-family: Georgia, “Times New Roman”, serif;
-color: #1C1A15;
-font-size: 13px;
-line-height: 1.5;
-}
+.preview-pane.light .preview-label { color: var(–stone); }
+.preview-pane.dark .preview-label { color: #6B6760; }
 
 .actions {
 display: flex;
@@ -208,9 +210,11 @@ color: var(–stone);
 text-align: center;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
 body { padding: 40px 16px 80px; }
-.preview { padding: 28px 20px; }
+.preview-row { grid-template-columns: 1fr; }
+.preview-pane.light { border-right: none; border-bottom: 1px solid var(–shell); }
+.preview-pane { padding: 28px 20px; }
 .card-head { padding: 18px 20px; }
 .actions button { padding: 14px 12px; font-size: 9px; letter-spacing: 0.3em; }
 }
@@ -231,7 +235,7 @@ body { padding: 40px 16px 80px; }
 
   <div class="meta">— Email Signatures</div>
   <h1>The mark, the name, the way in.</h1>
-  <p class="lede">Three signatures, one voice. The arch leads. Everything else is in service of it.</p>
+  <p class="lede">A small paper card, pressed into every email. Reads the same on light and dark clients.</p>
 
   <!-- ============================================ LUIS ============================================ -->
 
@@ -240,31 +244,63 @@ body { padding: 40px 16px 80px; }
       <div class="who">Luis Camarena</div>
       <div class="role">CEO</div>
     </div>
-    <div class="preview">
-      <div class="preview-label">Preview</div>
-      <div class="sig" id="sig-luis-render">
-        <table cellpadding="0" cellspacing="0" border="0" style="font-family: Georgia, 'Times New Roman', serif; color: #1C1A15; border-collapse: collapse;">
+    <div class="preview-row">
+      <div class="preview-pane light">
+        <div class="preview-label">Light client</div>
+        <table cellpadding="0" cellspacing="0" border="0" bgcolor="#EFE6D6" style="background-color: #EFE6D6; border-collapse: collapse;">
           <tr>
-            <td style="padding: 0 22px 0 0; border-right: 1px solid #D8C9AE; vertical-align: top; width: 56px;">
-              <table cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse;">
-                <tr><td style="text-align: left; padding-bottom: 4px;">
-                  <svg width="30" height="38" viewBox="9 9 42 54" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M 12 62 L 12 30 A 18 18 0 0 1 48 30 L 48 62" fill="none" stroke="#1C1A15" stroke-width="5.2" stroke-linecap="butt" stroke-linejoin="miter"/>
-                  </svg>
-                </td></tr>
-                <tr><td style="font-family: Helvetica, Arial, sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.16em; color: #1C1A15;">FARO</td></tr>
+            <td style="padding: 22px 26px;">
+              <table cellpadding="0" cellspacing="0" border="0" style="font-family: Georgia, 'Times New Roman', serif; color: #1C1A15; border-collapse: collapse;">
+                <tr>
+                  <td style="padding: 0 22px 0 0; border-right: 1px solid #C9B898; vertical-align: top; width: 56px;">
+                    <table cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse;">
+                      <tr><td style="text-align: left; padding-bottom: 4px;">
+                        <svg width="30" height="38" viewBox="9 9 42 54" xmlns="http://www.w3.org/2000/svg"><path d="M 12 62 L 12 30 A 18 18 0 0 1 48 30 L 48 62" fill="none" stroke="#1C1A15" stroke-width="5.2" stroke-linecap="butt" stroke-linejoin="miter"/></svg>
+                      </td></tr>
+                      <tr><td style="font-family: Helvetica, Arial, sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.16em; color: #1C1A15;">FARO</td></tr>
+                    </table>
+                  </td>
+                  <td style="padding: 0 0 0 22px; vertical-align: top;">
+                    <div style="font-family: Georgia, 'Times New Roman', serif; font-size: 17px; font-weight: 400; color: #1C1A15; line-height: 1.2;">Luis Fernando Camarena</div>
+                    <div style="font-family: Helvetica, Arial, sans-serif; font-size: 9px; letter-spacing: 0.36em; text-transform: uppercase; color: #6B5E48; margin-top: 5px;">CEO &middot; Maestro Tequilero</div>
+                    <div style="font-family: Georgia, 'Times New Roman', serif; font-size: 13px; color: #5A5348; margin-top: 14px; line-height: 1.6;">
+                      <a href="mailto:luis@casafaro.com" style="color: #6B5E48; text-decoration: none;">luis@casafaro.com</a>
+                    </div>
+                    <div style="font-family: Helvetica, Arial, sans-serif; font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: #6B5E48; margin-top: 14px;">Tequila Artesanal &middot; Amatit&aacute;n, Jalisco</div>
+                    <div style="margin-top: 4px;"><a href="https://casafaro.com" style="font-family: Georgia, serif; font-style: italic; font-size: 12px; color: #6B5E48; text-decoration: none;">casafaro.com</a></div>
+                  </td>
+                </tr>
               </table>
             </td>
-            <td style="padding: 0 0 0 22px; vertical-align: top;">
-              <div style="font-family: Georgia, 'Times New Roman', serif; font-size: 17px; font-weight: 400; color: #1C1A15; line-height: 1.2;">Luis Fernando Camarena</div>
-              <div style="font-family: Helvetica, Arial, sans-serif; font-size: 9px; letter-spacing: 0.36em; text-transform: uppercase; color: #8E8271; margin-top: 5px;">CEO &middot; Maestro Tequilero</div>
-              <div style="font-family: Georgia, 'Times New Roman', serif; font-size: 13px; color: #5A5348; margin-top: 14px; line-height: 1.6;">
-                <a href="mailto:luis@casafaro.com" style="color: #6B5E48; text-decoration: none;">luis@casafaro.com</a>
-              </div>
-              <div style="font-family: Helvetica, Arial, sans-serif; font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: #8E8271; margin-top: 14px;">Tequila Artesanal &middot; Amatit&aacute;n, Jalisco</div>
-              <div style="margin-top: 4px;">
-                <a href="https://casafaro.com" style="font-family: Georgia, serif; font-style: italic; font-size: 12px; color: #6B5E48; text-decoration: none;">casafaro.com</a>
-              </div>
+          </tr>
+        </table>
+      </div>
+      <div class="preview-pane dark">
+        <div class="preview-label">Dark client</div>
+        <table cellpadding="0" cellspacing="0" border="0" bgcolor="#EFE6D6" style="background-color: #EFE6D6; border-collapse: collapse;">
+          <tr>
+            <td style="padding: 22px 26px;">
+              <table cellpadding="0" cellspacing="0" border="0" style="font-family: Georgia, 'Times New Roman', serif; color: #1C1A15; border-collapse: collapse;">
+                <tr>
+                  <td style="padding: 0 22px 0 0; border-right: 1px solid #C9B898; vertical-align: top; width: 56px;">
+                    <table cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse;">
+                      <tr><td style="text-align: left; padding-bottom: 4px;">
+                        <svg width="30" height="38" viewBox="9 9 42 54" xmlns="http://www.w3.org/2000/svg"><path d="M 12 62 L 12 30 A 18 18 0 0 1 48 30 L 48 62" fill="none" stroke="#1C1A15" stroke-width="5.2" stroke-linecap="butt" stroke-linejoin="miter"/></svg>
+                      </td></tr>
+                      <tr><td style="font-family: Helvetica, Arial, sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.16em; color: #1C1A15;">FARO</td></tr>
+                    </table>
+                  </td>
+                  <td style="padding: 0 0 0 22px; vertical-align: top;">
+                    <div style="font-family: Georgia, 'Times New Roman', serif; font-size: 17px; font-weight: 400; color: #1C1A15; line-height: 1.2;">Luis Fernando Camarena</div>
+                    <div style="font-family: Helvetica, Arial, sans-serif; font-size: 9px; letter-spacing: 0.36em; text-transform: uppercase; color: #6B5E48; margin-top: 5px;">CEO &middot; Maestro Tequilero</div>
+                    <div style="font-family: Georgia, 'Times New Roman', serif; font-size: 13px; color: #5A5348; margin-top: 14px; line-height: 1.6;">
+                      <a href="mailto:luis@casafaro.com" style="color: #6B5E48; text-decoration: none;">luis@casafaro.com</a>
+                    </div>
+                    <div style="font-family: Helvetica, Arial, sans-serif; font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: #6B5E48; margin-top: 14px;">Tequila Artesanal &middot; Amatit&aacute;n, Jalisco</div>
+                    <div style="margin-top: 4px;"><a href="https://casafaro.com" style="font-family: Georgia, serif; font-style: italic; font-size: 12px; color: #6B5E48; text-decoration: none;">casafaro.com</a></div>
+                  </td>
+                </tr>
+              </table>
             </td>
           </tr>
         </table>
@@ -283,32 +319,65 @@ body { padding: 40px 16px 80px; }
       <div class="who">Felipe Preciado</div>
       <div class="role">Co-Founder</div>
     </div>
-    <div class="preview">
-      <div class="preview-label">Preview</div>
-      <div class="sig" id="sig-felipe-render">
-        <table cellpadding="0" cellspacing="0" border="0" style="font-family: Georgia, 'Times New Roman', serif; color: #1C1A15; border-collapse: collapse;">
+    <div class="preview-row">
+      <div class="preview-pane light">
+        <div class="preview-label">Light client</div>
+        <table cellpadding="0" cellspacing="0" border="0" bgcolor="#EFE6D6" style="background-color: #EFE6D6; border-collapse: collapse;">
           <tr>
-            <td style="padding: 0 22px 0 0; border-right: 1px solid #D8C9AE; vertical-align: top; width: 56px;">
-              <table cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse;">
-                <tr><td style="text-align: left; padding-bottom: 4px;">
-                  <svg width="30" height="38" viewBox="9 9 42 54" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M 12 62 L 12 30 A 18 18 0 0 1 48 30 L 48 62" fill="none" stroke="#1C1A15" stroke-width="5.2" stroke-linecap="butt" stroke-linejoin="miter"/>
-                  </svg>
-                </td></tr>
-                <tr><td style="font-family: Helvetica, Arial, sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.16em; color: #1C1A15;">FARO</td></tr>
+            <td style="padding: 22px 26px;">
+              <table cellpadding="0" cellspacing="0" border="0" style="font-family: Georgia, 'Times New Roman', serif; color: #1C1A15; border-collapse: collapse;">
+                <tr>
+                  <td style="padding: 0 22px 0 0; border-right: 1px solid #C9B898; vertical-align: top; width: 56px;">
+                    <table cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse;">
+                      <tr><td style="text-align: left; padding-bottom: 4px;">
+                        <svg width="30" height="38" viewBox="9 9 42 54" xmlns="http://www.w3.org/2000/svg"><path d="M 12 62 L 12 30 A 18 18 0 0 1 48 30 L 48 62" fill="none" stroke="#1C1A15" stroke-width="5.2" stroke-linecap="butt" stroke-linejoin="miter"/></svg>
+                      </td></tr>
+                      <tr><td style="font-family: Helvetica, Arial, sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.16em; color: #1C1A15;">FARO</td></tr>
+                    </table>
+                  </td>
+                  <td style="padding: 0 0 0 22px; vertical-align: top;">
+                    <div style="font-family: Georgia, 'Times New Roman', serif; font-size: 17px; font-weight: 400; color: #1C1A15; line-height: 1.2;">Felipe Preciado</div>
+                    <div style="font-family: Helvetica, Arial, sans-serif; font-size: 9px; letter-spacing: 0.36em; text-transform: uppercase; color: #6B5E48; margin-top: 5px;">Co-Founder</div>
+                    <div style="font-family: Georgia, 'Times New Roman', serif; font-size: 13px; color: #5A5348; margin-top: 14px; line-height: 1.6;">
+                      <a href="mailto:felipe@casafaro.com" style="color: #6B5E48; text-decoration: none;">felipe@casafaro.com</a><br>
+                      <span style="color: #5A5348;">+1 858 238 6230</span>
+                    </div>
+                    <div style="font-family: Helvetica, Arial, sans-serif; font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: #6B5E48; margin-top: 14px;">Tequila Artesanal &middot; Amatit&aacute;n, Jalisco</div>
+                    <div style="margin-top: 4px;"><a href="https://casafaro.com" style="font-family: Georgia, serif; font-style: italic; font-size: 12px; color: #6B5E48; text-decoration: none;">casafaro.com</a></div>
+                  </td>
+                </tr>
               </table>
             </td>
-            <td style="padding: 0 0 0 22px; vertical-align: top;">
-              <div style="font-family: Georgia, 'Times New Roman', serif; font-size: 17px; font-weight: 400; color: #1C1A15; line-height: 1.2;">Felipe Preciado</div>
-              <div style="font-family: Helvetica, Arial, sans-serif; font-size: 9px; letter-spacing: 0.36em; text-transform: uppercase; color: #8E8271; margin-top: 5px;">Co-Founder</div>
-              <div style="font-family: Georgia, 'Times New Roman', serif; font-size: 13px; color: #5A5348; margin-top: 14px; line-height: 1.6;">
-                <a href="mailto:felipe@casafaro.com" style="color: #6B5E48; text-decoration: none;">felipe@casafaro.com</a><br>
-                <span style="color: #5A5348;">+1 858 238 6230</span>
-              </div>
-              <div style="font-family: Helvetica, Arial, sans-serif; font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: #8E8271; margin-top: 14px;">Tequila Artesanal &middot; Amatit&aacute;n, Jalisco</div>
-              <div style="margin-top: 4px;">
-                <a href="https://casafaro.com" style="font-family: Georgia, serif; font-style: italic; font-size: 12px; color: #6B5E48; text-decoration: none;">casafaro.com</a>
-              </div>
+          </tr>
+        </table>
+      </div>
+      <div class="preview-pane dark">
+        <div class="preview-label">Dark client</div>
+        <table cellpadding="0" cellspacing="0" border="0" bgcolor="#EFE6D6" style="background-color: #EFE6D6; border-collapse: collapse;">
+          <tr>
+            <td style="padding: 22px 26px;">
+              <table cellpadding="0" cellspacing="0" border="0" style="font-family: Georgia, 'Times New Roman', serif; color: #1C1A15; border-collapse: collapse;">
+                <tr>
+                  <td style="padding: 0 22px 0 0; border-right: 1px solid #C9B898; vertical-align: top; width: 56px;">
+                    <table cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse;">
+                      <tr><td style="text-align: left; padding-bottom: 4px;">
+                        <svg width="30" height="38" viewBox="9 9 42 54" xmlns="http://www.w3.org/2000/svg"><path d="M 12 62 L 12 30 A 18 18 0 0 1 48 30 L 48 62" fill="none" stroke="#1C1A15" stroke-width="5.2" stroke-linecap="butt" stroke-linejoin="miter"/></svg>
+                      </td></tr>
+                      <tr><td style="font-family: Helvetica, Arial, sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.16em; color: #1C1A15;">FARO</td></tr>
+                    </table>
+                  </td>
+                  <td style="padding: 0 0 0 22px; vertical-align: top;">
+                    <div style="font-family: Georgia, 'Times New Roman', serif; font-size: 17px; font-weight: 400; color: #1C1A15; line-height: 1.2;">Felipe Preciado</div>
+                    <div style="font-family: Helvetica, Arial, sans-serif; font-size: 9px; letter-spacing: 0.36em; text-transform: uppercase; color: #6B5E48; margin-top: 5px;">Co-Founder</div>
+                    <div style="font-family: Georgia, 'Times New Roman', serif; font-size: 13px; color: #5A5348; margin-top: 14px; line-height: 1.6;">
+                      <a href="mailto:felipe@casafaro.com" style="color: #6B5E48; text-decoration: none;">felipe@casafaro.com</a><br>
+                      <span style="color: #5A5348;">+1 858 238 6230</span>
+                    </div>
+                    <div style="font-family: Helvetica, Arial, sans-serif; font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: #6B5E48; margin-top: 14px;">Tequila Artesanal &middot; Amatit&aacute;n, Jalisco</div>
+                    <div style="margin-top: 4px;"><a href="https://casafaro.com" style="font-family: Georgia, serif; font-style: italic; font-size: 12px; color: #6B5E48; text-decoration: none;">casafaro.com</a></div>
+                  </td>
+                </tr>
+              </table>
             </td>
           </tr>
         </table>
@@ -327,31 +396,63 @@ body { padding: 40px 16px 80px; }
       <div class="who">Juan Carlos Blum</div>
       <div class="role">Co-Founder</div>
     </div>
-    <div class="preview">
-      <div class="preview-label">Preview</div>
-      <div class="sig" id="sig-jc-render">
-        <table cellpadding="0" cellspacing="0" border="0" style="font-family: Georgia, 'Times New Roman', serif; color: #1C1A15; border-collapse: collapse;">
+    <div class="preview-row">
+      <div class="preview-pane light">
+        <div class="preview-label">Light client</div>
+        <table cellpadding="0" cellspacing="0" border="0" bgcolor="#EFE6D6" style="background-color: #EFE6D6; border-collapse: collapse;">
           <tr>
-            <td style="padding: 0 22px 0 0; border-right: 1px solid #D8C9AE; vertical-align: top; width: 56px;">
-              <table cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse;">
-                <tr><td style="text-align: left; padding-bottom: 4px;">
-                  <svg width="30" height="38" viewBox="9 9 42 54" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M 12 62 L 12 30 A 18 18 0 0 1 48 30 L 48 62" fill="none" stroke="#1C1A15" stroke-width="5.2" stroke-linecap="butt" stroke-linejoin="miter"/>
-                  </svg>
-                </td></tr>
-                <tr><td style="font-family: Helvetica, Arial, sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.16em; color: #1C1A15;">FARO</td></tr>
+            <td style="padding: 22px 26px;">
+              <table cellpadding="0" cellspacing="0" border="0" style="font-family: Georgia, 'Times New Roman', serif; color: #1C1A15; border-collapse: collapse;">
+                <tr>
+                  <td style="padding: 0 22px 0 0; border-right: 1px solid #C9B898; vertical-align: top; width: 56px;">
+                    <table cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse;">
+                      <tr><td style="text-align: left; padding-bottom: 4px;">
+                        <svg width="30" height="38" viewBox="9 9 42 54" xmlns="http://www.w3.org/2000/svg"><path d="M 12 62 L 12 30 A 18 18 0 0 1 48 30 L 48 62" fill="none" stroke="#1C1A15" stroke-width="5.2" stroke-linecap="butt" stroke-linejoin="miter"/></svg>
+                      </td></tr>
+                      <tr><td style="font-family: Helvetica, Arial, sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.16em; color: #1C1A15;">FARO</td></tr>
+                    </table>
+                  </td>
+                  <td style="padding: 0 0 0 22px; vertical-align: top;">
+                    <div style="font-family: Georgia, 'Times New Roman', serif; font-size: 17px; font-weight: 400; color: #1C1A15; line-height: 1.2;">Juan Carlos Blum</div>
+                    <div style="font-family: Helvetica, Arial, sans-serif; font-size: 9px; letter-spacing: 0.36em; text-transform: uppercase; color: #6B5E48; margin-top: 5px;">Co-Founder</div>
+                    <div style="font-family: Georgia, 'Times New Roman', serif; font-size: 13px; color: #5A5348; margin-top: 14px; line-height: 1.6;">
+                      <a href="mailto:jc@casafaro.com" style="color: #6B5E48; text-decoration: none;">jc@casafaro.com</a>
+                    </div>
+                    <div style="font-family: Helvetica, Arial, sans-serif; font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: #6B5E48; margin-top: 14px;">Tequila Artesanal &middot; Amatit&aacute;n, Jalisco</div>
+                    <div style="margin-top: 4px;"><a href="https://casafaro.com" style="font-family: Georgia, serif; font-style: italic; font-size: 12px; color: #6B5E48; text-decoration: none;">casafaro.com</a></div>
+                  </td>
+                </tr>
               </table>
             </td>
-            <td style="padding: 0 0 0 22px; vertical-align: top;">
-              <div style="font-family: Georgia, 'Times New Roman', serif; font-size: 17px; font-weight: 400; color: #1C1A15; line-height: 1.2;">Juan Carlos Blum</div>
-              <div style="font-family: Helvetica, Arial, sans-serif; font-size: 9px; letter-spacing: 0.36em; text-transform: uppercase; color: #8E8271; margin-top: 5px;">Co-Founder</div>
-              <div style="font-family: Georgia, 'Times New Roman', serif; font-size: 13px; color: #5A5348; margin-top: 14px; line-height: 1.6;">
-                <a href="mailto:jc@casafaro.com" style="color: #6B5E48; text-decoration: none;">jc@casafaro.com</a>
-              </div>
-              <div style="font-family: Helvetica, Arial, sans-serif; font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: #8E8271; margin-top: 14px;">Tequila Artesanal &middot; Amatit&aacute;n, Jalisco</div>
-              <div style="margin-top: 4px;">
-                <a href="https://casafaro.com" style="font-family: Georgia, serif; font-style: italic; font-size: 12px; color: #6B5E48; text-decoration: none;">casafaro.com</a>
-              </div>
+          </tr>
+        </table>
+      </div>
+      <div class="preview-pane dark">
+        <div class="preview-label">Dark client</div>
+        <table cellpadding="0" cellspacing="0" border="0" bgcolor="#EFE6D6" style="background-color: #EFE6D6; border-collapse: collapse;">
+          <tr>
+            <td style="padding: 22px 26px;">
+              <table cellpadding="0" cellspacing="0" border="0" style="font-family: Georgia, 'Times New Roman', serif; color: #1C1A15; border-collapse: collapse;">
+                <tr>
+                  <td style="padding: 0 22px 0 0; border-right: 1px solid #C9B898; vertical-align: top; width: 56px;">
+                    <table cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse;">
+                      <tr><td style="text-align: left; padding-bottom: 4px;">
+                        <svg width="30" height="38" viewBox="9 9 42 54" xmlns="http://www.w3.org/2000/svg"><path d="M 12 62 L 12 30 A 18 18 0 0 1 48 30 L 48 62" fill="none" stroke="#1C1A15" stroke-width="5.2" stroke-linecap="butt" stroke-linejoin="miter"/></svg>
+                      </td></tr>
+                      <tr><td style="font-family: Helvetica, Arial, sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.16em; color: #1C1A15;">FARO</td></tr>
+                    </table>
+                  </td>
+                  <td style="padding: 0 0 0 22px; vertical-align: top;">
+                    <div style="font-family: Georgia, 'Times New Roman', serif; font-size: 17px; font-weight: 400; color: #1C1A15; line-height: 1.2;">Juan Carlos Blum</div>
+                    <div style="font-family: Helvetica, Arial, sans-serif; font-size: 9px; letter-spacing: 0.36em; text-transform: uppercase; color: #6B5E48; margin-top: 5px;">Co-Founder</div>
+                    <div style="font-family: Georgia, 'Times New Roman', serif; font-size: 13px; color: #5A5348; margin-top: 14px; line-height: 1.6;">
+                      <a href="mailto:jc@casafaro.com" style="color: #6B5E48; text-decoration: none;">jc@casafaro.com</a>
+                    </div>
+                    <div style="font-family: Helvetica, Arial, sans-serif; font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: #6B5E48; margin-top: 14px;">Tequila Artesanal &middot; Amatit&aacute;n, Jalisco</div>
+                    <div style="margin-top: 4px;"><a href="https://casafaro.com" style="font-family: Georgia, serif; font-style: italic; font-size: 12px; color: #6B5E48; text-decoration: none;">casafaro.com</a></div>
+                  </td>
+                </tr>
+              </table>
             </td>
           </tr>
         </table>
@@ -402,8 +503,11 @@ body { padding: 40px 16px 80px; }
   <li>Paste in the editor. Outlook will preserve the table layout.</li>
 </ol>
 
-<h3>A note on rendering</h3>
-<p>The signature uses <strong>Georgia</strong> (serif) and <strong>Helvetica/Arial</strong> (sans) &mdash; both available on every machine and email client without webfont loading. The arch is inline SVG, so it scales crisply on retina screens and dark mode. No images to "click to load."</p>
+<h3>On dark mode</h3>
+<p>The signature carries its own paper-cream background, set via both the <code>bgcolor</code> attribute and inline CSS &mdash; the two methods every major email client respects. On Gmail, Apple Mail, Outlook, and Superhuman in dark mode, the card stays cream and the ink stays ink. Nothing inverts.</p>
+
+<h3>On rendering</h3>
+<p>The signature uses <strong>Georgia</strong> (serif) and <strong>Helvetica/Arial</strong> (sans) &mdash; both available on every machine and email client without webfont loading. The arch is inline SVG, so it scales crisply on retina screens. No images to "click to load."</p>
 ```
 
   </div>
@@ -412,12 +516,13 @@ body { padding: 40px 16px 80px; }
 
 </div>
 
-<!-- The HTML strings to copy. Kept as separate template tags so we copy the EXACT, clean source -->
-
 <template id="src-luis">
+<table cellpadding="0" cellspacing="0" border="0" bgcolor="#EFE6D6" style="background-color: #EFE6D6; border-collapse: collapse;">
+<tr>
+<td style="padding: 22px 26px;">
 <table cellpadding="0" cellspacing="0" border="0" style="font-family: Georgia, 'Times New Roman', serif; color: #1C1A15; border-collapse: collapse;">
 <tr>
-<td style="padding: 0 22px 0 0; border-right: 1px solid #D8C9AE; vertical-align: top; width: 56px;">
+<td style="padding: 0 22px 0 0; border-right: 1px solid #C9B898; vertical-align: top; width: 56px;">
 <table cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse;">
 <tr><td style="text-align: left; padding-bottom: 4px;">
 <svg width="30" height="38" viewBox="9 9 42 54" xmlns="http://www.w3.org/2000/svg"><path d="M 12 62 L 12 30 A 18 18 0 0 1 48 30 L 48 62" fill="none" stroke="#1C1A15" stroke-width="5.2" stroke-linecap="butt" stroke-linejoin="miter"/></svg>
@@ -427,21 +532,27 @@ body { padding: 40px 16px 80px; }
 </td>
 <td style="padding: 0 0 0 22px; vertical-align: top;">
 <div style="font-family: Georgia, 'Times New Roman', serif; font-size: 17px; font-weight: 400; color: #1C1A15; line-height: 1.2;">Luis Fernando Camarena</div>
-<div style="font-family: Helvetica, Arial, sans-serif; font-size: 9px; letter-spacing: 0.36em; text-transform: uppercase; color: #8E8271; margin-top: 5px;">CEO &middot; Maestro Tequilero</div>
+<div style="font-family: Helvetica, Arial, sans-serif; font-size: 9px; letter-spacing: 0.36em; text-transform: uppercase; color: #6B5E48; margin-top: 5px;">CEO &middot; Maestro Tequilero</div>
 <div style="font-family: Georgia, 'Times New Roman', serif; font-size: 13px; color: #5A5348; margin-top: 14px; line-height: 1.6;">
 <a href="mailto:luis@casafaro.com" style="color: #6B5E48; text-decoration: none;">luis@casafaro.com</a>
 </div>
-<div style="font-family: Helvetica, Arial, sans-serif; font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: #8E8271; margin-top: 14px;">Tequila Artesanal &middot; Amatit&aacute;n, Jalisco</div>
+<div style="font-family: Helvetica, Arial, sans-serif; font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: #6B5E48; margin-top: 14px;">Tequila Artesanal &middot; Amatit&aacute;n, Jalisco</div>
 <div style="margin-top: 4px;"><a href="https://casafaro.com" style="font-family: Georgia, serif; font-style: italic; font-size: 12px; color: #6B5E48; text-decoration: none;">casafaro.com</a></div>
+</td>
+</tr>
+</table>
 </td>
 </tr>
 </table>
 </template>
 
 <template id="src-felipe">
+<table cellpadding="0" cellspacing="0" border="0" bgcolor="#EFE6D6" style="background-color: #EFE6D6; border-collapse: collapse;">
+<tr>
+<td style="padding: 22px 26px;">
 <table cellpadding="0" cellspacing="0" border="0" style="font-family: Georgia, 'Times New Roman', serif; color: #1C1A15; border-collapse: collapse;">
 <tr>
-<td style="padding: 0 22px 0 0; border-right: 1px solid #D8C9AE; vertical-align: top; width: 56px;">
+<td style="padding: 0 22px 0 0; border-right: 1px solid #C9B898; vertical-align: top; width: 56px;">
 <table cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse;">
 <tr><td style="text-align: left; padding-bottom: 4px;">
 <svg width="30" height="38" viewBox="9 9 42 54" xmlns="http://www.w3.org/2000/svg"><path d="M 12 62 L 12 30 A 18 18 0 0 1 48 30 L 48 62" fill="none" stroke="#1C1A15" stroke-width="5.2" stroke-linecap="butt" stroke-linejoin="miter"/></svg>
@@ -451,22 +562,28 @@ body { padding: 40px 16px 80px; }
 </td>
 <td style="padding: 0 0 0 22px; vertical-align: top;">
 <div style="font-family: Georgia, 'Times New Roman', serif; font-size: 17px; font-weight: 400; color: #1C1A15; line-height: 1.2;">Felipe Preciado</div>
-<div style="font-family: Helvetica, Arial, sans-serif; font-size: 9px; letter-spacing: 0.36em; text-transform: uppercase; color: #8E8271; margin-top: 5px;">Co-Founder</div>
+<div style="font-family: Helvetica, Arial, sans-serif; font-size: 9px; letter-spacing: 0.36em; text-transform: uppercase; color: #6B5E48; margin-top: 5px;">Co-Founder</div>
 <div style="font-family: Georgia, 'Times New Roman', serif; font-size: 13px; color: #5A5348; margin-top: 14px; line-height: 1.6;">
 <a href="mailto:felipe@casafaro.com" style="color: #6B5E48; text-decoration: none;">felipe@casafaro.com</a><br>
 <span style="color: #5A5348;">+1 858 238 6230</span>
 </div>
-<div style="font-family: Helvetica, Arial, sans-serif; font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: #8E8271; margin-top: 14px;">Tequila Artesanal &middot; Amatit&aacute;n, Jalisco</div>
+<div style="font-family: Helvetica, Arial, sans-serif; font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: #6B5E48; margin-top: 14px;">Tequila Artesanal &middot; Amatit&aacute;n, Jalisco</div>
 <div style="margin-top: 4px;"><a href="https://casafaro.com" style="font-family: Georgia, serif; font-style: italic; font-size: 12px; color: #6B5E48; text-decoration: none;">casafaro.com</a></div>
+</td>
+</tr>
+</table>
 </td>
 </tr>
 </table>
 </template>
 
 <template id="src-jc">
+<table cellpadding="0" cellspacing="0" border="0" bgcolor="#EFE6D6" style="background-color: #EFE6D6; border-collapse: collapse;">
+<tr>
+<td style="padding: 22px 26px;">
 <table cellpadding="0" cellspacing="0" border="0" style="font-family: Georgia, 'Times New Roman', serif; color: #1C1A15; border-collapse: collapse;">
 <tr>
-<td style="padding: 0 22px 0 0; border-right: 1px solid #D8C9AE; vertical-align: top; width: 56px;">
+<td style="padding: 0 22px 0 0; border-right: 1px solid #C9B898; vertical-align: top; width: 56px;">
 <table cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse;">
 <tr><td style="text-align: left; padding-bottom: 4px;">
 <svg width="30" height="38" viewBox="9 9 42 54" xmlns="http://www.w3.org/2000/svg"><path d="M 12 62 L 12 30 A 18 18 0 0 1 48 30 L 48 62" fill="none" stroke="#1C1A15" stroke-width="5.2" stroke-linecap="butt" stroke-linejoin="miter"/></svg>
@@ -476,12 +593,15 @@ body { padding: 40px 16px 80px; }
 </td>
 <td style="padding: 0 0 0 22px; vertical-align: top;">
 <div style="font-family: Georgia, 'Times New Roman', serif; font-size: 17px; font-weight: 400; color: #1C1A15; line-height: 1.2;">Juan Carlos Blum</div>
-<div style="font-family: Helvetica, Arial, sans-serif; font-size: 9px; letter-spacing: 0.36em; text-transform: uppercase; color: #8E8271; margin-top: 5px;">Co-Founder</div>
+<div style="font-family: Helvetica, Arial, sans-serif; font-size: 9px; letter-spacing: 0.36em; text-transform: uppercase; color: #6B5E48; margin-top: 5px;">Co-Founder</div>
 <div style="font-family: Georgia, 'Times New Roman', serif; font-size: 13px; color: #5A5348; margin-top: 14px; line-height: 1.6;">
 <a href="mailto:jc@casafaro.com" style="color: #6B5E48; text-decoration: none;">jc@casafaro.com</a>
 </div>
-<div style="font-family: Helvetica, Arial, sans-serif; font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: #8E8271; margin-top: 14px;">Tequila Artesanal &middot; Amatit&aacute;n, Jalisco</div>
+<div style="font-family: Helvetica, Arial, sans-serif; font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: #6B5E48; margin-top: 14px;">Tequila Artesanal &middot; Amatit&aacute;n, Jalisco</div>
 <div style="margin-top: 4px;"><a href="https://casafaro.com" style="font-family: Georgia, serif; font-style: italic; font-size: 12px; color: #6B5E48; text-decoration: none;">casafaro.com</a></div>
+</td>
+</tr>
+</table>
 </td>
 </tr>
 </table>
@@ -527,7 +647,6 @@ function flashButton(id, label) {
 async function copyHTML(who) {
   const tpl = document.getElementById('src-' + who);
   const html = tpl.innerHTML.trim();
-  // Build rich-text + plain fallback so paste retains formatting in mail clients
   try {
     const blob = new Blob([html], { type: 'text/html' });
     const textBlob = new Blob([PLAIN_TEXT[who]], { type: 'text/plain' });
@@ -539,7 +658,6 @@ async function copyHTML(who) {
     ]);
     flashButton('btn-' + who + '-html', 'Copied ✓');
   } catch (err) {
-    // Fallback for browsers without ClipboardItem
     try {
       await navigator.clipboard.writeText(html);
       flashButton('btn-' + who + '-html', 'Copied as text ✓');
