@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Casa Faro — Email Signatures</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #EFE6D6;
+    --ink: #1C1A15;
+    --mute: #5A5348;
+    --stone: #8E8271;
+    --accent: #6B5E48;
+    --shell: #D8C9AE;
+    --card: #F5EEDF;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-weight: 300;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.7;
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+    padding: 56px 24px 120px;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; }
+
+.brand {
+display: flex;
+flex-direction: column;
+align-items: center;
+margin-bottom: 56px;
+padding-bottom: 32px;
+border-bottom: 1px solid var(–shell);
+}
+.brand svg { height: 28px; width: auto; }
+.brand .word {
+font-family: “Jost”, sans-serif;
+font-weight: 700;
+font-size: 12px;
+letter-spacing: 0.06em;
+margin-top: 8px;
+}
+
+h1 {
+font-weight: 300;
+font-size: clamp(32px, 4.5vw, 48px);
+line-height: 1.15;
+margin-bottom: 12px;
+letter-spacing: -0.005em;
+text-align: center;
+}
+.meta {
+font-family: “Jost”, sans-serif;
+font-size: 10px;
+letter-spacing: 0.42em;
+text-transform: uppercase;
+color: var(–stone);
+text-align: center;
+margin-bottom: 8px;
+}
+.lede {
+color: var(–mute);
+text-align: center;
+margin: 24px auto 0;
+max-width: 540px;
+font-style: italic;
+}
+
+.card {
+background: var(–card);
+border: 1px solid var(–shell);
+margin-top: 40px;
+overflow: hidden;
+}
+.card-head {
+padding: 20px 28px;
+border-bottom: 1px solid var(–shell);
+display: flex;
+justify-content: space-between;
+align-items: center;
+flex-wrap: wrap;
+gap: 12px;
+}
+.card-head .who {
+font-family: “Cormorant Garamond”, serif;
+font-size: 22px;
+font-weight: 400;
+}
+.card-head .role {
+font-family: “Jost”, sans-serif;
+font-size: 9px;
+letter-spacing: 0.4em;
+text-transform: uppercase;
+color: var(–stone);
+}
+
+.preview {
+background: #FFFFFF;
+padding: 40px 32px;
+border-bottom: 1px solid var(–shell);
+overflow-x: auto;
+}
+.preview-label {
+font-family: “Jost”, sans-serif;
+font-size: 9px;
+letter-spacing: 0.4em;
+text-transform: uppercase;
+color: var(–stone);
+margin-bottom: 24px;
+}
+
+/* The actual signature styling — kept inline in the source for copy/paste,
+but mirrored here for the preview */
+.sig {
+font-family: Georgia, “Times New Roman”, serif;
+color: #1C1A15;
+font-size: 13px;
+line-height: 1.5;
+}
+
+.actions {
+display: flex;
+gap: 0;
+background: var(–card);
+}
+.actions button {
+flex: 1;
+background: transparent;
+border: none;
+border-right: 1px solid var(–shell);
+padding: 16px 20px;
+font-family: “Jost”, sans-serif;
+font-size: 10px;
+letter-spacing: 0.4em;
+text-transform: uppercase;
+color: var(–mute);
+cursor: pointer;
+transition: background 0.2s ease, color 0.2s ease;
+}
+.actions button:last-child { border-right: none; }
+.actions button:hover {
+background: var(–paper);
+color: var(–ink);
+}
+.actions button.copied {
+background: var(–ink);
+color: var(–paper);
+}
+
+.install {
+margin-top: 80px;
+padding-top: 40px;
+border-top: 1px solid var(–shell);
+}
+.install h2 {
+font-weight: 300;
+font-size: 28px;
+margin-bottom: 8px;
+}
+.install h3 {
+font-family: “Jost”, sans-serif;
+font-size: 10px;
+letter-spacing: 0.4em;
+text-transform: uppercase;
+color: var(–ink);
+margin-top: 32px;
+margin-bottom: 12px;
+}
+.install p, .install li {
+color: var(–mute);
+margin-bottom: 8px;
+}
+.install ol { padding-left: 22px; }
+.install code {
+font-family: “Jost”, monospace;
+background: var(–card);
+padding: 2px 6px;
+font-size: 13px;
+color: var(–ink);
+}
+
+.note {
+background: rgba(107, 94, 72, 0.06);
+border-left: 2px solid var(–accent);
+padding: 18px 22px;
+margin: 24px 0;
+font-style: italic;
+color: var(–mute);
+}
+
+.footer-mini {
+margin-top: 100px;
+padding-top: 40px;
+border-top: 1px solid var(–shell);
+font-family: “Jost”, sans-serif;
+font-size: 10px;
+letter-spacing: 0.4em;
+text-transform: uppercase;
+color: var(–stone);
+text-align: center;
+}
+
+@media (max-width: 600px) {
+body { padding: 40px 16px 80px; }
+.preview { padding: 28px 20px; }
+.card-head { padding: 18px 20px; }
+.actions button { padding: 14px 12px; font-size: 9px; letter-spacing: 0.3em; }
+}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+
+  <div class="brand">
+    <svg viewBox="9 9 42 54">
+      <path d="M 12 62 L 12 30 A 18 18 0 0 1 48 30 L 48 62"
+            fill="none" stroke="currentColor" stroke-width="5.2"
+            stroke-linecap="butt" stroke-linejoin="miter"/>
+    </svg>
+    <span class="word">FARO</span>
+  </div>
+
+  <div class="meta">— Email Signatures</div>
+  <h1>The mark, the name, the way in.</h1>
+  <p class="lede">Three signatures, one voice. The arch leads. Everything else is in service of it.</p>
+
+  <!-- ============================================ LUIS ============================================ -->
+
+  <div class="card">
+    <div class="card-head">
+      <div class="who">Luis Camarena</div>
+      <div class="role">CEO</div>
+    </div>
+    <div class="preview">
+      <div class="preview-label">Preview</div>
+      <div class="sig" id="sig-luis-render">
+        <table cellpadding="0" cellspacing="0" border="0" style="font-family: Georgia, 'Times New Roman', serif; color: #1C1A15; border-collapse: collapse;">
+          <tr>
+            <td style="padding: 0 22px 0 0; border-right: 1px solid #D8C9AE; vertical-align: top; width: 56px;">
+              <table cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse;">
+                <tr><td style="text-align: left; padding-bottom: 4px;">
+                  <svg width="30" height="38" viewBox="9 9 42 54" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M 12 62 L 12 30 A 18 18 0 0 1 48 30 L 48 62" fill="none" stroke="#1C1A15" stroke-width="5.2" stroke-linecap="butt" stroke-linejoin="miter"/>
+                  </svg>
+                </td></tr>
+                <tr><td style="font-family: Helvetica, Arial, sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.16em; color: #1C1A15;">FARO</td></tr>
+              </table>
+            </td>
+            <td style="padding: 0 0 0 22px; vertical-align: top;">
+              <div style="font-family: Georgia, 'Times New Roman', serif; font-size: 17px; font-weight: 400; color: #1C1A15; line-height: 1.2;">Luis Fernando Camarena</div>
+              <div style="font-family: Helvetica, Arial, sans-serif; font-size: 9px; letter-spacing: 0.36em; text-transform: uppercase; color: #8E8271; margin-top: 5px;">CEO &middot; Maestro Tequilero</div>
+              <div style="font-family: Georgia, 'Times New Roman', serif; font-size: 13px; color: #5A5348; margin-top: 14px; line-height: 1.6;">
+                <a href="mailto:luis@casafaro.com" style="color: #6B5E48; text-decoration: none;">luis@casafaro.com</a>
+              </div>
+              <div style="font-family: Helvetica, Arial, sans-serif; font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: #8E8271; margin-top: 14px;">Tequila Artesanal &middot; Amatit&aacute;n, Jalisco</div>
+              <div style="margin-top: 4px;">
+                <a href="https://casafaro.com" style="font-family: Georgia, serif; font-style: italic; font-size: 12px; color: #6B5E48; text-decoration: none;">casafaro.com</a>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="actions">
+      <button onclick="copyHTML('luis')" id="btn-luis-html">Copy HTML</button>
+      <button onclick="copyText('luis')" id="btn-luis-text">Copy Plain Text</button>
+    </div>
+  </div>
+
+  <!-- ============================================ FELIPE ============================================ -->
+
+  <div class="card">
+    <div class="card-head">
+      <div class="who">Felipe Preciado</div>
+      <div class="role">Co-Founder</div>
+    </div>
+    <div class="preview">
+      <div class="preview-label">Preview</div>
+      <div class="sig" id="sig-felipe-render">
+        <table cellpadding="0" cellspacing="0" border="0" style="font-family: Georgia, 'Times New Roman', serif; color: #1C1A15; border-collapse: collapse;">
+          <tr>
+            <td style="padding: 0 22px 0 0; border-right: 1px solid #D8C9AE; vertical-align: top; width: 56px;">
+              <table cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse;">
+                <tr><td style="text-align: left; padding-bottom: 4px;">
+                  <svg width="30" height="38" viewBox="9 9 42 54" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M 12 62 L 12 30 A 18 18 0 0 1 48 30 L 48 62" fill="none" stroke="#1C1A15" stroke-width="5.2" stroke-linecap="butt" stroke-linejoin="miter"/>
+                  </svg>
+                </td></tr>
+                <tr><td style="font-family: Helvetica, Arial, sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.16em; color: #1C1A15;">FARO</td></tr>
+              </table>
+            </td>
+            <td style="padding: 0 0 0 22px; vertical-align: top;">
+              <div style="font-family: Georgia, 'Times New Roman', serif; font-size: 17px; font-weight: 400; color: #1C1A15; line-height: 1.2;">Felipe Preciado</div>
+              <div style="font-family: Helvetica, Arial, sans-serif; font-size: 9px; letter-spacing: 0.36em; text-transform: uppercase; color: #8E8271; margin-top: 5px;">Co-Founder</div>
+              <div style="font-family: Georgia, 'Times New Roman', serif; font-size: 13px; color: #5A5348; margin-top: 14px; line-height: 1.6;">
+                <a href="mailto:felipe@casafaro.com" style="color: #6B5E48; text-decoration: none;">felipe@casafaro.com</a><br>
+                <span style="color: #5A5348;">+1 858 238 6230</span>
+              </div>
+              <div style="font-family: Helvetica, Arial, sans-serif; font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: #8E8271; margin-top: 14px;">Tequila Artesanal &middot; Amatit&aacute;n, Jalisco</div>
+              <div style="margin-top: 4px;">
+                <a href="https://casafaro.com" style="font-family: Georgia, serif; font-style: italic; font-size: 12px; color: #6B5E48; text-decoration: none;">casafaro.com</a>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="actions">
+      <button onclick="copyHTML('felipe')" id="btn-felipe-html">Copy HTML</button>
+      <button onclick="copyText('felipe')" id="btn-felipe-text">Copy Plain Text</button>
+    </div>
+  </div>
+
+  <!-- ============================================ JUAN CARLOS ============================================ -->
+
+  <div class="card">
+    <div class="card-head">
+      <div class="who">Juan Carlos Blum</div>
+      <div class="role">Co-Founder</div>
+    </div>
+    <div class="preview">
+      <div class="preview-label">Preview</div>
+      <div class="sig" id="sig-jc-render">
+        <table cellpadding="0" cellspacing="0" border="0" style="font-family: Georgia, 'Times New Roman', serif; color: #1C1A15; border-collapse: collapse;">
+          <tr>
+            <td style="padding: 0 22px 0 0; border-right: 1px solid #D8C9AE; vertical-align: top; width: 56px;">
+              <table cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse;">
+                <tr><td style="text-align: left; padding-bottom: 4px;">
+                  <svg width="30" height="38" viewBox="9 9 42 54" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M 12 62 L 12 30 A 18 18 0 0 1 48 30 L 48 62" fill="none" stroke="#1C1A15" stroke-width="5.2" stroke-linecap="butt" stroke-linejoin="miter"/>
+                  </svg>
+                </td></tr>
+                <tr><td style="font-family: Helvetica, Arial, sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.16em; color: #1C1A15;">FARO</td></tr>
+              </table>
+            </td>
+            <td style="padding: 0 0 0 22px; vertical-align: top;">
+              <div style="font-family: Georgia, 'Times New Roman', serif; font-size: 17px; font-weight: 400; color: #1C1A15; line-height: 1.2;">Juan Carlos Blum</div>
+              <div style="font-family: Helvetica, Arial, sans-serif; font-size: 9px; letter-spacing: 0.36em; text-transform: uppercase; color: #8E8271; margin-top: 5px;">Co-Founder</div>
+              <div style="font-family: Georgia, 'Times New Roman', serif; font-size: 13px; color: #5A5348; margin-top: 14px; line-height: 1.6;">
+                <a href="mailto:jc@casafaro.com" style="color: #6B5E48; text-decoration: none;">jc@casafaro.com</a>
+              </div>
+              <div style="font-family: Helvetica, Arial, sans-serif; font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: #8E8271; margin-top: 14px;">Tequila Artesanal &middot; Amatit&aacute;n, Jalisco</div>
+              <div style="margin-top: 4px;">
+                <a href="https://casafaro.com" style="font-family: Georgia, serif; font-style: italic; font-size: 12px; color: #6B5E48; text-decoration: none;">casafaro.com</a>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="actions">
+      <button onclick="copyHTML('jc')" id="btn-jc-html">Copy HTML</button>
+      <button onclick="copyText('jc')" id="btn-jc-text">Copy Plain Text</button>
+    </div>
+  </div>
+
+  <!-- ============================================ INSTALL ============================================ -->
+
+  <div class="install">
+    <div class="meta">— How to install</div>
+    <h2>Two minutes per inbox.</h2>
+
+```
+<div class="note">
+  The "Copy HTML" button copies the rendered signature directly to your clipboard with all formatting preserved. Paste it into your email signature settings.
+</div>
+
+<h3>Gmail</h3>
+<ol>
+  <li>Tap <strong>Copy HTML</strong> on your card above.</li>
+  <li>In Gmail (desktop): <code>Settings &rarr; See all settings &rarr; General &rarr; Signature</code>.</li>
+  <li>Create a new signature. Paste with <code>&#8984;V</code> (Mac) or <code>Ctrl+V</code> (PC). The formatting will carry over.</li>
+  <li>Set it as default for new emails and replies. Save.</li>
+</ol>
+
+<h3>Apple Mail (Mac)</h3>
+<ol>
+  <li>Open this page in Safari and tap <strong>Copy HTML</strong>.</li>
+  <li>In Mail: <code>Mail &rarr; Settings &rarr; Signatures</code>.</li>
+  <li>Create a new signature, paste in. Uncheck <em>"Always match my default message font"</em> &mdash; otherwise Apple Mail strips the formatting.</li>
+  <li>Drag the signature onto your account in the left column.</li>
+</ol>
+
+<h3>Apple Mail (iPhone)</h3>
+<ol>
+  <li>iOS strips most formatting from custom signatures. The cleanest path: set up the signature on your Mac as above, then sync via iCloud or rely on the desktop version. Alternatively, paste the <strong>Plain Text</strong> version.</li>
+</ol>
+
+<h3>Outlook</h3>
+<ol>
+  <li>Tap <strong>Copy HTML</strong>.</li>
+  <li><code>File &rarr; Options &rarr; Mail &rarr; Signatures</code>.</li>
+  <li>Paste in the editor. Outlook will preserve the table layout.</li>
+</ol>
+
+<h3>A note on rendering</h3>
+<p>The signature uses <strong>Georgia</strong> (serif) and <strong>Helvetica/Arial</strong> (sans) &mdash; both available on every machine and email client without webfont loading. The arch is inline SVG, so it scales crisply on retina screens and dark mode. No images to "click to load."</p>
+```
+
+  </div>
+
+  <div class="footer-mini">Casa Faro &middot; Tequila Artesanal</div>
+
+</div>
+
+<!-- The HTML strings to copy. Kept as separate template tags so we copy the EXACT, clean source -->
+
+<template id="src-luis">
+<table cellpadding="0" cellspacing="0" border="0" style="font-family: Georgia, 'Times New Roman', serif; color: #1C1A15; border-collapse: collapse;">
+<tr>
+<td style="padding: 0 22px 0 0; border-right: 1px solid #D8C9AE; vertical-align: top; width: 56px;">
+<table cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse;">
+<tr><td style="text-align: left; padding-bottom: 4px;">
+<svg width="30" height="38" viewBox="9 9 42 54" xmlns="http://www.w3.org/2000/svg"><path d="M 12 62 L 12 30 A 18 18 0 0 1 48 30 L 48 62" fill="none" stroke="#1C1A15" stroke-width="5.2" stroke-linecap="butt" stroke-linejoin="miter"/></svg>
+</td></tr>
+<tr><td style="font-family: Helvetica, Arial, sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.16em; color: #1C1A15;">FARO</td></tr>
+</table>
+</td>
+<td style="padding: 0 0 0 22px; vertical-align: top;">
+<div style="font-family: Georgia, 'Times New Roman', serif; font-size: 17px; font-weight: 400; color: #1C1A15; line-height: 1.2;">Luis Fernando Camarena</div>
+<div style="font-family: Helvetica, Arial, sans-serif; font-size: 9px; letter-spacing: 0.36em; text-transform: uppercase; color: #8E8271; margin-top: 5px;">CEO &middot; Maestro Tequilero</div>
+<div style="font-family: Georgia, 'Times New Roman', serif; font-size: 13px; color: #5A5348; margin-top: 14px; line-height: 1.6;">
+<a href="mailto:luis@casafaro.com" style="color: #6B5E48; text-decoration: none;">luis@casafaro.com</a>
+</div>
+<div style="font-family: Helvetica, Arial, sans-serif; font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: #8E8271; margin-top: 14px;">Tequila Artesanal &middot; Amatit&aacute;n, Jalisco</div>
+<div style="margin-top: 4px;"><a href="https://casafaro.com" style="font-family: Georgia, serif; font-style: italic; font-size: 12px; color: #6B5E48; text-decoration: none;">casafaro.com</a></div>
+</td>
+</tr>
+</table>
+</template>
+
+<template id="src-felipe">
+<table cellpadding="0" cellspacing="0" border="0" style="font-family: Georgia, 'Times New Roman', serif; color: #1C1A15; border-collapse: collapse;">
+<tr>
+<td style="padding: 0 22px 0 0; border-right: 1px solid #D8C9AE; vertical-align: top; width: 56px;">
+<table cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse;">
+<tr><td style="text-align: left; padding-bottom: 4px;">
+<svg width="30" height="38" viewBox="9 9 42 54" xmlns="http://www.w3.org/2000/svg"><path d="M 12 62 L 12 30 A 18 18 0 0 1 48 30 L 48 62" fill="none" stroke="#1C1A15" stroke-width="5.2" stroke-linecap="butt" stroke-linejoin="miter"/></svg>
+</td></tr>
+<tr><td style="font-family: Helvetica, Arial, sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.16em; color: #1C1A15;">FARO</td></tr>
+</table>
+</td>
+<td style="padding: 0 0 0 22px; vertical-align: top;">
+<div style="font-family: Georgia, 'Times New Roman', serif; font-size: 17px; font-weight: 400; color: #1C1A15; line-height: 1.2;">Felipe Preciado</div>
+<div style="font-family: Helvetica, Arial, sans-serif; font-size: 9px; letter-spacing: 0.36em; text-transform: uppercase; color: #8E8271; margin-top: 5px;">Co-Founder</div>
+<div style="font-family: Georgia, 'Times New Roman', serif; font-size: 13px; color: #5A5348; margin-top: 14px; line-height: 1.6;">
+<a href="mailto:felipe@casafaro.com" style="color: #6B5E48; text-decoration: none;">felipe@casafaro.com</a><br>
+<span style="color: #5A5348;">+1 858 238 6230</span>
+</div>
+<div style="font-family: Helvetica, Arial, sans-serif; font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: #8E8271; margin-top: 14px;">Tequila Artesanal &middot; Amatit&aacute;n, Jalisco</div>
+<div style="margin-top: 4px;"><a href="https://casafaro.com" style="font-family: Georgia, serif; font-style: italic; font-size: 12px; color: #6B5E48; text-decoration: none;">casafaro.com</a></div>
+</td>
+</tr>
+</table>
+</template>
+
+<template id="src-jc">
+<table cellpadding="0" cellspacing="0" border="0" style="font-family: Georgia, 'Times New Roman', serif; color: #1C1A15; border-collapse: collapse;">
+<tr>
+<td style="padding: 0 22px 0 0; border-right: 1px solid #D8C9AE; vertical-align: top; width: 56px;">
+<table cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse;">
+<tr><td style="text-align: left; padding-bottom: 4px;">
+<svg width="30" height="38" viewBox="9 9 42 54" xmlns="http://www.w3.org/2000/svg"><path d="M 12 62 L 12 30 A 18 18 0 0 1 48 30 L 48 62" fill="none" stroke="#1C1A15" stroke-width="5.2" stroke-linecap="butt" stroke-linejoin="miter"/></svg>
+</td></tr>
+<tr><td style="font-family: Helvetica, Arial, sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.16em; color: #1C1A15;">FARO</td></tr>
+</table>
+</td>
+<td style="padding: 0 0 0 22px; vertical-align: top;">
+<div style="font-family: Georgia, 'Times New Roman', serif; font-size: 17px; font-weight: 400; color: #1C1A15; line-height: 1.2;">Juan Carlos Blum</div>
+<div style="font-family: Helvetica, Arial, sans-serif; font-size: 9px; letter-spacing: 0.36em; text-transform: uppercase; color: #8E8271; margin-top: 5px;">Co-Founder</div>
+<div style="font-family: Georgia, 'Times New Roman', serif; font-size: 13px; color: #5A5348; margin-top: 14px; line-height: 1.6;">
+<a href="mailto:jc@casafaro.com" style="color: #6B5E48; text-decoration: none;">jc@casafaro.com</a>
+</div>
+<div style="font-family: Helvetica, Arial, sans-serif; font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: #8E8271; margin-top: 14px;">Tequila Artesanal &middot; Amatit&aacute;n, Jalisco</div>
+<div style="margin-top: 4px;"><a href="https://casafaro.com" style="font-family: Georgia, serif; font-style: italic; font-size: 12px; color: #6B5E48; text-decoration: none;">casafaro.com</a></div>
+</td>
+</tr>
+</table>
+</template>
+
+<script>
+const PLAIN_TEXT = {
+  luis: `Luis Fernando Camarena
+CEO · Maestro Tequilero
+
+luis@casafaro.com
+
+— FARO · Tequila Artesanal
+Amatitán, Jalisco · casafaro.com`,
+  felipe: `Felipe Preciado
+Co-Founder
+
+felipe@casafaro.com
++1 858 238 6230
+
+— FARO · Tequila Artesanal
+Amatitán, Jalisco · casafaro.com`,
+  jc: `Juan Carlos Blum
+Co-Founder
+
+jc@casafaro.com
+
+— FARO · Tequila Artesanal
+Amatitán, Jalisco · casafaro.com`
+};
+
+function flashButton(id, label) {
+  const btn = document.getElementById(id);
+  const original = btn.textContent;
+  btn.textContent = label;
+  btn.classList.add('copied');
+  setTimeout(() => {
+    btn.textContent = original;
+    btn.classList.remove('copied');
+  }, 1600);
+}
+
+async function copyHTML(who) {
+  const tpl = document.getElementById('src-' + who);
+  const html = tpl.innerHTML.trim();
+  // Build rich-text + plain fallback so paste retains formatting in mail clients
+  try {
+    const blob = new Blob([html], { type: 'text/html' });
+    const textBlob = new Blob([PLAIN_TEXT[who]], { type: 'text/plain' });
+    await navigator.clipboard.write([
+      new ClipboardItem({
+        'text/html': blob,
+        'text/plain': textBlob
+      })
+    ]);
+    flashButton('btn-' + who + '-html', 'Copied ✓');
+  } catch (err) {
+    // Fallback for browsers without ClipboardItem
+    try {
+      await navigator.clipboard.writeText(html);
+      flashButton('btn-' + who + '-html', 'Copied as text ✓');
+    } catch (e) {
+      flashButton('btn-' + who + '-html', 'Copy failed — try manually');
+    }
+  }
+}
+
+async function copyText(who) {
+  try {
+    await navigator.clipboard.writeText(PLAIN_TEXT[who]);
+    flashButton('btn-' + who + '-text', 'Copied ✓');
+  } catch (e) {
+    flashButton('btn-' + who + '-text', 'Copy failed');
+  }
+}
+</script>
+
+</body>
+</html>
